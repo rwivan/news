@@ -1,23 +1,19 @@
 {
-    "name": "yiisoft/yii2-app-basic",
-    "description": "Yii 2 Basic Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "name": "news",
+    "description": "test task",
     "type": "project",
     "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
-    },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.14",
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "~2.0.15.1",
         "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0"
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "dektrium/yii2-user": "~0.9.14",
+        "dektrium/yii2-rbac": "*",
+        "loveorigami/yii2-modal-ajax": "dev-master#335bde58d2e365bfab4f06ae2fed4ad76298384d",
+        "yiisoft/yii2-jui": "~2.0.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -49,6 +45,7 @@
                 {
                     "runtime": "0777",
                     "web/assets": "0777",
+                    "web/upload": "0777",
                     "yii": "0755"
                 }
             ]

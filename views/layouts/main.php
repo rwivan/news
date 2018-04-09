@@ -38,16 +38,16 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => Yii::t('app', 'Home'), 'url' => ['/news/index']],
+            ['label' => Yii::t('app', 'User admin'), 'url' => ['/user/admin'], 'visible' => \Yii::$app->user->can('User.Admin')],
+            ['label' => Yii::t('app', 'Profile'), 'url' => ['/user/settings/profile'], 'visible' => ! \Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => Yii::t('app', 'Login'), 'url' => ['/user/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/user/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    Yii::t('app', 'Logout ({username})', ['username' => Yii::$app->user->identity->username]),
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
@@ -62,6 +62,14 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?= Alert::widget([
+            'alertTypes' => [
+                'lasted-news' => 'alert-info',
+            ],
+            'closeButton' => [
+                'onclick' => 'jQuery.ajax({url: "/site/close-lasted-news"})',
+            ],
+        ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
@@ -69,7 +77,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Рачилин Иван <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

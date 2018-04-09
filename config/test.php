@@ -1,11 +1,8 @@
 <?php
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/test_db.php';
 
-/**
- * Application configuration shared by all test types
- */
-return [
+use yii\helpers\ArrayHelper;
+
+return ArrayHelper::merge(require __DIR__ . '/base.php', [
     'id' => 'basic-tests',
     'basePath' => dirname(__DIR__),
     'aliases' => [
@@ -14,7 +11,9 @@ return [
     ],
     'language' => 'en-US',
     'components' => [
-        'db' => $db,
+        'db' => [
+            'dsn' => 'mysql:host=localhost;dbname=yii2basic_news_test',
+        ],
         'mailer' => [
             'useFileTransport' => true,
         ],
@@ -38,5 +37,4 @@ return [
             */
         ],
     ],
-    'params' => $params,
-];
+]);

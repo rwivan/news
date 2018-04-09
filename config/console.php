@@ -1,41 +1,31 @@
 <?php
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+use app\commands\InitContorller;
+use yii\console\controllers\MigrateController;
+use yii\helpers\ArrayHelper;
 
-$config = [
+$config = ArrayHelper::merge(require __DIR__ . '/base.php', [
     'id' => 'basic-console',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
-    'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
-        'log' => [
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-        'db' => $db,
-    ],
-    'params' => $params,
-    /*
     'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
+        'migrate' => [
+            'class' => MigrateController::class,
+            'migrationPath' => [
+                '@vendor/dektrium/yii2-user/migrations',
+                '@yii/rbac/migrations',
+                '@app/migrations',
+            ]
+        ],
+        'init' => [
+            'class' => InitContorller::class,
         ],
     ],
-    */
-];
+]);
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment

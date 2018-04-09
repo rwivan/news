@@ -113,3 +113,11 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.highlight-text:hover {
+    background-color: #f0f0f0;
+}
+
+.container-padding {
+    padding-bottom: 15px;
+}
